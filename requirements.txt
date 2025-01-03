@@ -1,4 +1,5 @@
 pytest
 pandas
 matplotlib
+seaborn
 scipy
