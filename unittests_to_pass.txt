@@ -1,0 +1,18 @@
+There are 6 unit tests which the code must pass:
+
+1. test_prepare_data : This test is to ensure that all the steps of the data preparation were successful, including dropping unwanted columns
+and removing null values
+
+2. test_filter_by_2022 : Since the analysis of the dataset focuses on a subset of the 2022 data only, this test makes sure the dataframe is
+filtered by the year 2022
+
+3. test_add_income_group : This test is to ensure the column added to categorise each Entity (Country) by income level based on GDP per capita is
+working
+
+4. test_add_emissions_per_gdp : This test is to ensure the calculated column of 'CO₂ emissions per $100,000 GDP' added is accurate (calculated by 
+('Annual CO₂ emissions (per capita)')/('GDP per capita')*100000)
+
+5. test_create_headline_plot : This test makes sure the headline figure code runs without error and that the png of the plot created is saved as a
+file
+
+6. test_create_barplots : As above but with the two barplots (top10 and bottom10 of the countries according to 'CO₂ emissions per $100,000 GDP')

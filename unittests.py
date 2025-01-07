@@ -62,7 +62,7 @@ class TestFunctions(unittest.TestCase):
         self.assertTrue(os.path.exists("headline_figure.png"), "The headline figure file was not created.")
  
 
-    def test_create_top_10_and_bottom_10_barplot(self):
+    def test_create_barplots(self):
         """Makes sure the create_top_10_barplot and create_bottom_10_barplot functions runs and are saved to a file"""
         clean_df = prepare_data(self.test_file_path)
         df_2022 = filter_by_2022(clean_df)
