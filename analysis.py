@@ -72,13 +72,54 @@ def add_regression_line(countries_2022_df):
         ci = None # Gets rid of confidence interval
     )
 
-def create_final_plot(filepath):
-    """Prepares data and creates the scatter plot."""
-    # Preparation
-    countries_df = prepare_data(filepath)
-    countries_2022_df = filter_by_2022(countries_df)
-    countries_2022_df = add_income_group(countries_2022_df)
-    
+def add_emissions_per_gdp(countries_2022_df):
+    """Create a new column for carbon emissions per $100,000 GDP"""
+    countries_2022_df['CO₂ emissions per $100,000 GDP'] =(countries_2022_df['Annual CO₂ emissions (per capita)']/countries_2022_df['GDP per capita']*100000)
+
+    return countries_2022_df
+
+def create_top_10_barplot(countries_2022_df):
+
+    top_10 = countries_2022_df.sort_values(by='CO₂ emissions per $100,000 GDP',ascending=False).head(10)
+
+    # Create barplot
+    plt.figure(figsize=(12, 4))
+    sns.barplot(
+        data=top_10,
+        y='Entity',
+        x='CO₂ emissions per $100,000 GDP',
+        hue='Income group',  # Colour by income group
+        dodge=False
+    )
+    plt.title('Least carbon efficient countries w.r.t GDP ', fontsize=16)
+    plt.xlabel('CO2 Emissions per $100,000 GDP', fontsize=12)
+    plt.ylabel('Country', fontsize=12)
+    plt.legend(title='Income Group', bbox_to_anchor=(1, 1), loc='upper left')
+    plt.tight_layout()
+    plt.savefig('top10_figure.png', format='png')
+
+def create_bottom_10_barplot(countries_2022_df):
+
+    bottom_10 = countries_2022_df.sort_values(by='CO₂ emissions per $100,000 GDP',ascending=False).tail(10)
+
+    # Create barplot
+    plt.figure(figsize=(12, 4))
+    sns.barplot(
+        data=bottom_10,
+        y='Entity',
+        x='CO₂ emissions per $100,000 GDP',
+        hue='Income group',  # Colour by income group
+        dodge=False
+    )
+    plt.title('Most carbon efficient countries w.r.t economic production ', fontsize=16)
+    plt.xlabel('CO2 Emissions (tonnes) per $100,000 GDP', fontsize=12)
+    plt.ylabel('Country', fontsize=12)
+    plt.legend(title='Income Group', bbox_to_anchor=(1, 1), loc='upper left')
+    plt.tight_layout()
+    plt.savefig('bottom10_figure.png', format='png')
+
+def create_headline_plot(countries_2022_df):
+    """Creates the scatter plot with regression line and annotations."""  
     # Plot the headline figure
     headline_figure = plot_scatter(
         countries_2022_df,
@@ -97,4 +138,17 @@ def create_final_plot(filepath):
     plt.tight_layout() # Makes sure the graph fits inside the figure
     plt.savefig('headline_figure.png', format='png')
 
-create_final_plot('co2-emissions-vs-gdp.csv')
+def create_final_plots(filepath):
+    """Create the 3 final plots"""
+
+    # Data preparation
+    countries_df = prepare_data(filepath)
+    countries_2022_df = filter_by_2022(countries_df)
+    countries_2022_df = add_income_group(countries_2022_df)
+    countries_2022_df = add_emissions_per_gdp(countries_2022_df)
+
+    create_headline_plot(countries_2022_df)
+    create_top_10_barplot(countries_2022_df)
+    create_bottom_10_barplot(countries_2022_df)
+
+create_final_plots('co2-emissions-vs-gdp.csv')
