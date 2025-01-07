@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from scipy.stats import pearsonr
+import numpy as np
 
 sns.set_theme()
 
@@ -138,8 +140,42 @@ def create_headline_plot(countries_2022_df):
     plt.tight_layout() # Makes sure the graph fits inside the figure
     plt.savefig('headline_figure.png', format='png')
 
-def create_final_plots(filepath):
-    """Create the 3 final plots"""
+def headlineplot_analysis(countries_2022_df):
+
+    gdp_pc = countries_2022_df['GDP per capita']
+    co2_pc = countries_2022_df['Annual CO₂ emissions (per capita)']
+
+    # Calculate correlation coefficient
+    corr_coef, p_value = pearsonr(gdp_pc, co2_pc) # https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.pearsonr.html
+
+    print(f"Correlation Coefficient between GDP per capita and Annual CO₂ emissions per capita: {corr_coef:.4f}")
+
+    population = countries_2022_df['Population (historical)']
+    co2 = countries_2022_df['Annual CO₂ emissions (per capita)']*countries_2022_df['Population (historical)']
+
+    corr_coef, p_value = pearsonr(population, co2)
+
+    print(f"Correlation Coefficient between Population and Estimated total C02 emissions: {corr_coef:.4f}")
+
+    gdp = countries_2022_df['GDP per capita']*countries_2022_df['Population (historical)']
+
+    # Calculate correlation coefficient
+    corr_coef, p_value = pearsonr(gdp, co2)
+
+    print(f"Correlation Coefficient between Estimated total GDP and Estimated total C02 emissions: {corr_coef:.4f}")
+
+    # Regression analysis
+
+    x = countries_2022_df['GDP per capita'] / 20000
+    y = countries_2022_df['Annual CO₂ emissions (per capita)']
+
+    slope, intercept = np.polyfit(x, y, 1) # Fitting a linear model: y = mx + b https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html
+
+    print(f"Gradient (Slope): {slope:.2f}")
+    print(f"Intercept: {intercept:.2f}")
+
+def create_final_analysis(filepath):
+    """Create the 3 final plots and print quantitative analysis"""
 
     # Data preparation
     countries_df = prepare_data(filepath)
@@ -150,5 +186,6 @@ def create_final_plots(filepath):
     create_headline_plot(countries_2022_df)
     create_top_10_barplot(countries_2022_df)
     create_bottom_10_barplot(countries_2022_df)
+    headlineplot_analysis(countries_2022_df)
 
-create_final_plots('co2-emissions-vs-gdp.csv')
+create_final_analysis('co2-emissions-vs-gdp.csv')
