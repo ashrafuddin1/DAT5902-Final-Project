@@ -40,34 +40,34 @@ def plot_scatter(countries_2022_df, highlight_countries, bubble_size):
         data=countries_2022_df,
         x='GDP per capita',
         y='Annual CO₂ emissions (per capita)',
-        size=bubble_size,
-        hue='Income group',
+        size=bubble_size, # Bubble size allows varying size of points based on population of country https://seaborn.pydata.org/examples/scatter_bubbles.html
+        hue='Income group', # Different colour for each income group
         sizes=(20, 500),
         alpha=0.7
     )
     
     # Annotates specific countries on the graph
-    for index, row in countries_2022_df.iterrows():
+    for index, row in countries_2022_df.iterrows(): # iterates over rows of the pd series
         if row['Entity'] in highlight_countries:
             plt.annotate(
-                row['Entity'],  # Text to display
+                row['Entity'],  # Text to display i.e. the Country name
                 (row['GDP per capita'], row['Annual CO₂ emissions (per capita)']),  # Coordinates of the point on the graph
-                textcoords="offset points",  # Specify offset so that annotations are next to the point
-                xytext=(5, 5),  # Offset for the text, i.e. 5 units to the right and 5 units up from the country point
+                textcoords="offset points",  # Specify offset so that annotations are next to the point https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.annotate.html
+                xytext=(5, 5),  # Position for the text, i.e. 5 points to the right and 5 points up from the country point
                 ha='left',  # Horizontal alignment
                 fontsize=9,  # Font size
-                color='black'  # Text color
+                color='black'  # Text colour
             )
     return plt
 
 def add_regression_line(countries_2022_df):
     """Adds a regression line to the plot."""
-    sns.regplot(
+    sns.regplot( # https://seaborn.pydata.org/generated/seaborn.regplot.html
         data=countries_2022_df,
         x='GDP per capita',
         y='Annual CO₂ emissions (per capita)',
         scatter=False,  # Disable scatter points since we already plotted the graph
-        color='red',  # Regression line color  
+        color='red',  # Regression line colour  
         line_kws={"linewidth": 1}, # Customise line width
         ci = None # Gets rid of confidence interval
     )
@@ -82,7 +82,7 @@ def create_top_10_barplot(countries_2022_df):
 
     top_10 = countries_2022_df.sort_values(by='CO₂ emissions per $100,000 GDP',ascending=False).head(10)
 
-    # Create barplot
+    # Create barplot https://seaborn.pydata.org/generated/seaborn.barplot.html#
     plt.figure(figsize=(12, 4))
     sns.barplot(
         data=top_10,
@@ -125,7 +125,7 @@ def create_headline_plot(countries_2022_df):
         countries_2022_df,
         highlight_countries = ['United States', 'China', 'India', 'Germany', 'Nigeria', 'Qatar', 'Japan', 'United Kingdom', 'Singapore', 'South Africa',
                        'Brazil', 'South Korea', 'Russia', 'Saudi Arabia', 'Canada', 'Italy', 'Burundi', 'Norway', 'Kuwait', 'United Arab Emirates',
-                       'Iran'],
+                       'Iran'], # Countries to annotate
         bubble_size='Population (historical)',
     )
     add_regression_line(countries_2022_df)

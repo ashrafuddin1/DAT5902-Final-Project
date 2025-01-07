@@ -10,7 +10,7 @@ class TestFunctions(unittest.TestCase):
         self.test_file_path = 'test_data.csv'
         
     def test_prepare_data(self):
-        """Ensures that the dataframe is loaded and cleaned properly e.g. removing unwanted columns"""
+        """Ensures that the dataframe is loaded and cleaned properly e.g. removing unwanted columns and null values"""
         clean_df = prepare_data(self.test_file_path)
         self.assertNotIn('World', clean_df['Entity'].values)
         self.assertFalse(clean_df.isnull().values.any())
