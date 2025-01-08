@@ -13,27 +13,26 @@ This project analyses the relationship between GDP per capita and Population wit
 - Analysis:
   - Regression analysis of scatter plot with calculated gradient and y-intercept
   - Pearson correlation coefficients for various pairs of variables
+  - Summary statistics including means of each variable per income group
 
 # Project Structure 
 📂 DAT5902-FINAL-PROJECT/ 
-├──| _pycache_ 
-   ├── analysis.cpython-311.pyc
-   ├── headline_figure_code.cpython-311.pyc
-├──| .circleci 
-   ├── config.yml # config file for Circle CI unit tests
-├── analysis.py # Main code for figures and analysis 
-├── bottom10_figure.png # Bottom 10 barplot (generated)
-├── co2-emissions-vs-gdp.csv # Dataset 
-├── headline_figure.png # Scatter plot (generated)
-├── README.md # Documentation (this file)
-├── requirements.txt # List of dependencies for unit tests
-├── test_data.csv # Mock data for the unit tests
-├── unittests.py # Unit tests for functions 
-├── top10_figure.png # Top 10 barplot (generated)  
-├── unittests_to_pass.txt # Outline of unit tests
-└── unittests.py # Test suite for functions
+- _pycache_ 
+- .circleci 
+   - config.yml # config file for Circle CI unit tests
+- analysis.py # Main code for figures and analysis 
+- bottom10_figure.png # Bottom 10 barplot (generated)
+- co2-emissions-vs-gdp.csv # Dataset 
+- headline_figure.png # Scatter plot (generated)
+- README.md # Documentation (this file)
+- requirements.txt # List of dependencies for unit tests
+- test_data.csv # Mock data for the unit tests
+- unittests.py # Unit tests for functions 
+- top10_figure.png # Top 10 barplot (generated)  
+- unittests_to_pass.txt # Outline of unit tests
+- unittests.py # Test suite for functions
 
-*Setup and Installation* Clear instructions to set up the environment and run the project.
+# Setup and Installation
 
 1. This project requires Python 3.8+ and the following dependencies to be installed:
 
