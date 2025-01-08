@@ -94,7 +94,7 @@ def create_top_10_barplot(countries_2022_df):
         dodge=False
     )
     plt.title('Least carbon efficient countries w.r.t GDP ', fontsize=16)
-    plt.xlabel('CO2 Emissions per $100,000 GDP', fontsize=12)
+    plt.xlabel('CO2 Emissions (tons) per $100,000 GDP', fontsize=12)
     plt.ylabel('Country', fontsize=12)
     plt.legend(title='Income Group', bbox_to_anchor=(1, 1), loc='upper left')
     plt.tight_layout()
@@ -114,7 +114,7 @@ def create_bottom_10_barplot(countries_2022_df):
         dodge=False
     )
     plt.title('Most carbon efficient countries w.r.t economic production ', fontsize=16)
-    plt.xlabel('CO2 Emissions (tonnes) per $100,000 GDP', fontsize=12)
+    plt.xlabel('CO2 Emissions (tons) per $100,000 GDP', fontsize=12)
     plt.ylabel('Country', fontsize=12)
     plt.legend(title='Income Group', bbox_to_anchor=(1, 1), loc='upper left')
     plt.tight_layout()
@@ -134,8 +134,8 @@ def create_headline_plot(countries_2022_df):
     
     # Add labels and title
     plt.title('2022 CO2 Emissions vs. GDP Per Capita', fontsize=16)
-    plt.xlabel('GDP Per Capita (USD)', fontsize=14)
-    plt.ylabel('CO2 Emissions Per Capita (Metric Tons)', fontsize=14)
+    plt.xlabel('GDP Per Capita ($)', fontsize=14)
+    plt.ylabel('CO2 Emissions Per Capita (Tons)', fontsize=14)
     plt.legend(bbox_to_anchor=(1, 1), loc='upper left')
     plt.tight_layout() # Makes sure the graph fits inside the figure
     plt.savefig('headline_figure.png', format='png')
