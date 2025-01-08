@@ -174,6 +174,15 @@ def headlineplot_analysis(countries_2022_df):
     print(f"Gradient (Slope): {slope:.2f}")
     print(f"Intercept: {intercept:.2f}")
 
+    # Summary statistics
+
+    averages = countries_2022_df.groupby('Income group')[['GDP per capita', 'Annual CO₂ emissions (per capita)', 
+                                                          'CO₂ emissions per $100,000 GDP']].mean().round(2)
+    print(averages)
+
+    overall_averages = countries_2022_df[['GDP per capita', 'Annual CO₂ emissions (per capita)', 'CO₂ emissions per $100,000 GDP']].mean().round(2)
+    print(overall_averages)
+
 def create_final_analysis(filepath):
     """Create the 3 final plots and print quantitative analysis"""
 
