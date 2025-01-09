@@ -36,25 +36,27 @@ This project analyses the relationship between GDP per capita and Population wit
 
 1. This project requires Python 3.8+ and the following dependencies to be installed:
 
-  -pytest
-  -unittest
-  -matplotlib
-  -seaborn
-  -scipy
-  -numpy
-  -pandas
+  - pytest
+  - unittest
+  - matplotlib
+  - seaborn
+  - scipy
+  - numpy
+  - pandas
 
-2. Run analysis.py
+2. Clone GitHub repository using HTTPS link (https://github.com/ashrafuddin1/DAT5902-Final-Project.git)
+
+3. Run unittests.py to verify the functions are working as expected
+
+4. Run analysis.py
 
 The following plots will be saved in the current directory:
 
-headline_figure.png
-top10_figure.png
-bottom10_figure.png
+- headline_figure.png
+- top10_figure.png
+- bottom10_figure.png
 
 The quantitative analysis will be printed in the terminal
-
-3. Run unittests.py to verify the functions
 
 # Usage
 
@@ -76,7 +78,7 @@ create_highlight_plot(dataframe, highlight_countries, bubble_size): Creates a sc
 create_top_10_barplot(dataframe): Generates a bar plot for the least carbon-efficient countries.
 create_bottom_10_barplot(df): Generates a bar plot for the most carbon-efficient countries.
 
-#### Visualisations
+## Visualisations
 Scatter Plot: Highlights relationships between GDP per capita, Population and CO₂ emissions.
 Bar Plots: Showcases the most and least carbon-efficient countries based on CO₂ emissions relative to economic output.
 
@@ -107,10 +109,10 @@ Citation: Global Carbon Budget (2024)Population based on various sources (2024)B
 
 I acknowledge the use of the following Python libraries/frameworks for the purpose of the analysis in this project:
 
-  -pytest
-  -unittest
-  -matplotlib
-  -seaborn
-  -scipy
-  -numpy
-  -pandas
+  - pytest
+  - unittest
+  - matplotlib
+  - seaborn
+  - scipy
+  - numpy
+  - pandas
