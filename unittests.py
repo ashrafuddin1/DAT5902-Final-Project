@@ -12,9 +12,9 @@ class TestFunctions(unittest.TestCase):
     def test_prepare_data(self):
         """Ensures that the dataframe is loaded and cleaned properly e.g. removing unwanted columns and null values"""
         clean_df = prepare_data(self.test_file_path)
-        self.assertNotIn('World', clean_df['Entity'].values)
-        self.assertFalse(clean_df.isnull().values.any())
-        self.assertNotIn('Code', clean_df.columns)
+        self.assertNotIn('World', clean_df['Entity'].values) # Checks that 'World' is not in the Entity column
+        self.assertFalse(clean_df.isnull().values.any()) # Checks that there aren't any null values
+        self.assertNotIn('Code', clean_df.columns) # Checks 'Code' column has been removed
 
     def test_filter_by_2022(self):
         """Checks that dataframe has been filtered by 2022."""
@@ -28,10 +28,8 @@ class TestFunctions(unittest.TestCase):
         clean_df = prepare_data(self.test_file_path)
         df_2022 = filter_by_2022(clean_df)
         updated_df_2022 = add_income_group(df_2022)
-        self.assertEqual(
-            updated_df_2022[updated_df_2022['Entity'] == 'United States']['Income group'].values[0],
-            'High Income'
-        )
+        # Checks if 'United States' has been assigned 'High Income'
+        self.assertEqual(updated_df_2022[updated_df_2022['Entity'] == 'United States']['Income group'].values[0],'High Income')
 
     def test_add_emissions_per_gdp(self):
         """Ensures emissions per gdp column is added"""
@@ -44,10 +42,8 @@ class TestFunctions(unittest.TestCase):
         # Checking the caluclation is correct
         first_row = updated_df_2022.iloc[0]
         expected_value = (first_row['Annual CO₂ emissions (per capita)'] / first_row['GDP per capita']) * 100000
-        self.assertAlmostEqual(
-            first_row['CO₂ emissions per $100,000 GDP'], expected_value, places=2,
-            msg="CO₂ emissions per $100,000 GDP calculation is incorrect"
-        )
+        self.assertAlmostEqual(first_row['CO₂ emissions per $100,000 GDP'], expected_value, places=2, 
+                               msg= "CO₂ emissions per $100,000 GDP calculation is incorrect")
 
     def test_create_headline_plot(self):
         """Ensures headline plot runs and was saved to a file"""

@@ -153,16 +153,17 @@ def headlineplot_analysis(countries_2022_df):
     population = countries_2022_df['Population (historical)']
     co2 = countries_2022_df['Annual CO₂ emissions (per capita)']*countries_2022_df['Population (historical)']
 
+    # Calculate correlation coefficient
     corr_coef, p_value = pearsonr(population, co2)
 
-    print(f"Correlation Coefficient between Population and Estimated total C02 emissions: {corr_coef:.4f}")
+    print(f"Correlation Coefficient between Population and Estimated total CO₂ emissions: {corr_coef:.4f}")
 
     gdp = countries_2022_df['GDP per capita']*countries_2022_df['Population (historical)']
 
     # Calculate correlation coefficient
     corr_coef, p_value = pearsonr(gdp, co2)
 
-    print(f"Correlation Coefficient between Estimated total GDP and Estimated total C02 emissions: {corr_coef:.4f}")
+    print(f"Correlation Coefficient between Estimated total GDP and Estimated total CO₂ emissions: {corr_coef:.4f}")
 
     # Regression analysis
 
